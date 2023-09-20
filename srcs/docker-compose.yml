@@ -1,0 +1,54 @@
+version: '3.5'
+services:
+  mariadb:
+    container_name: Mariadb
+    build: ./requirements/mariadb/
+    restart: always
+    networks:
+      - mynetwork
+    volumes:
+      - db:/var/lib/mysql
+    env_file: .env
+
+  ngnix:
+    container_name: ngnix
+    build: ./requirements/nginx/
+    restart: always
+    volumes:
+     - WordPress:/var/www/html
+    depends_on:
+      - wordpress
+    ports:
+      - "80:80"
+    networks:
+      - mynetwork
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress/
+    restart: always
+    volumes:
+     - WordPress:/var/www/html
+    networks:
+     - mynetwork
+
+# NETWORK
+networks:
+  mynetwork:
+    name : mynetwork
+    driver : bridge         # Remember the different types of Networks, I showed you before ???
+
+# VOLUME
+volumes:
+  db:
+    driver: local
+    driver_opts:            # Options specific to the driver
+      type: 'none'
+      o: 'bind'
+      device: ../db_volume  # Persistent volume
+  WordPress:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ../wordpress_volume
