@@ -1,5 +1,5 @@
 #!/bin/sh
-service mysql start 
+/etc/init.d/mariadb start 
 
 # CREATE USER #
 echo "CREATE USER '$BDD_USER'@'%' IDENTIFIED BY '$BDD_USER_PASSWORD';" | mysql

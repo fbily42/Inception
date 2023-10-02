@@ -6,13 +6,13 @@
 #    By: fbily <fbily@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:39:23 by fbily             #+#    #+#              #
-#    Updated: 2023/10/02 15:57:59 by fbily            ###   ########.fr        #
+#    Updated: 2023/10/02 17:41:36 by fbily            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM debian:bullseye
 
-RUN apt-get update
+RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install -y nginx
 RUN apt-get install openssl -y
@@ -25,6 +25,7 @@ RUN openssl req \
             -keyout /etc/nginx/ssl/inception.key \
             -out /etc/nginx/ssl/inception.crt \
             -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=fbily.42.fr/UID=fbily"
+
 COPY ./conf/default    /etc/nginx/sites-available/default
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

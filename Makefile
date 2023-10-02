@@ -6,7 +6,7 @@
 #    By: fbily <fbily@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:39:59 by fbily             #+#    #+#              #
-#    Updated: 2023/10/02 14:55:19 by fbily            ###   ########.fr        #
+#    Updated: 2023/10/02 16:28:07 by fbily            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,4 +26,4 @@ clean:
 	@sudo docker volume rm -f $$(sudo docker volume ls)
 	@sudo rm -rf /home/fbily/data
 
-.PHONY: all clean fclean re
+.PHONY: all clean restart down

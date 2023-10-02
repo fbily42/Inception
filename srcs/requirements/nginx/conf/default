@@ -1,7 +1,7 @@
 server {
 	listen 80;
 	server_name fbily.42.fr
-	return 301 https://$host$request_uri;
+	return 301 https://fbily.42.fr$request_uri;
 }
 
 server {

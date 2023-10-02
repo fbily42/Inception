@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   mariadb:
-    container_name: Mariadb
+    container_name: mariadb
     build: ./requirements/mariadb/
     restart: always
     networks:
@@ -27,10 +27,13 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress/
     restart: always
+    depends_on:
+      - mariadb
     volumes:
      - WordPress:/var/www/html
     networks:
      - inception
+    env_file: .env
 
 # NETWORK
 networks:
