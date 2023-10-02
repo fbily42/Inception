@@ -5,7 +5,7 @@ services:
     build: ./requirements/mariadb/
     restart: always
     networks:
-      - mynetwork
+      - inception
     volumes:
       - db:/var/lib/mysql
     env_file: .env
@@ -19,9 +19,9 @@ services:
     depends_on:
       - wordpress
     ports:
-      - "80:80"
+      - "443:443"
     networks:
-      - mynetwork
+      - inception
 
   wordpress:
     container_name: wordpress
@@ -30,25 +30,26 @@ services:
     volumes:
      - WordPress:/var/www/html
     networks:
-     - mynetwork
+     - inception
 
 # NETWORK
 networks:
-  mynetwork:
-    name : mynetwork
-    driver : bridge         # Remember the different types of Networks, I showed you before ???
+  inception:
+    name : inception
+    driver : bridge
 
 # VOLUME
 volumes:
   db:
     driver: local
-    driver_opts:            # Options specific to the driver
+    driver_opts:
       type: 'none'
       o: 'bind'
-      device: ../db_volume  # Persistent volume
+      device: /home/fbily/data/database
+
   WordPress:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: ../wordpress_volume
+      device: /home/fbily/data/wordpress

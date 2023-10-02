@@ -6,15 +6,17 @@
 #    By: fbily <fbily@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:39:23 by fbily             #+#    #+#              #
-#    Updated: 2023/09/20 17:02:21 by fbily            ###   ########.fr        #
+#    Updated: 2023/10/02 15:57:59 by fbily            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+FROM debian:bullseye
+
 RUN apt-get update
 
 RUN apt-get install -y nginx
 RUN apt-get install openssl -y
+RUN mkdir -p /etc/nginx/ssl && chmod -R 755 /etc/nginx/ssl
 RUN openssl req \
             -x509 \
             -nodes \

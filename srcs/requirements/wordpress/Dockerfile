@@ -6,20 +6,21 @@
 #    By: fbily <fbily@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:39:35 by fbily             #+#    #+#              #
-#    Updated: 2023/09/20 16:40:34 by fbily            ###   ########.fr        #
+#    Updated: 2023/10/02 16:00:55 by fbily            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:buster
+FROM debian:bullseye
+
 RUN apt-get update
 RUN apt install php-fpm  -y
 RUN mkdir /run/php
 
-COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 COPY ./conf/index.php    /var/www/html/wordpress/index.php
 
 RUN chmod +x /var/www/html/wordpress/index.php
 
 EXPOSE 9000 
 
-ENTRYPOINT ["/usr/sbin/php-fpm7.3","-F" ]
+ENTRYPOINT ["/usr/sbin/php-fpm7.4","-F" ]
