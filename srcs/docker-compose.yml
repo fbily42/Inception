@@ -10,7 +10,7 @@ services:
       - db:/var/lib/mysql
     env_file: .env
 
-  ngnix:
+  nginx:
     container_name: ngnix
     build: ./requirements/nginx/
     restart: always

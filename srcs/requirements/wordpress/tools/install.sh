@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sleep 10
+
 cd /var/www/html
 mkdir -p wordpress
 cd wordpress
@@ -13,7 +15,5 @@ wp core download --allow-root
 wp config create --dbhost=$BDD_HOST --dbname=$BDD_NAME --dbuser=$BDD_USER --dbpass=$BDD_USER_PASSWORD --allow-root
 wp core install --url=fbily.42.fr --title="Inception - fbily" --admin_name=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_MAIL --skip-email --allow-root
 wp user create $WP_USER $WP_USER_MAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root
-
-wp theme install inspiro --activate --allow-root
 
 /usr/sbin/php-fpm7.4 -F

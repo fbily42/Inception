@@ -1,12 +1,6 @@
 server {
-	listen 80;
-	server_name fbily.42.fr
-	return 301 https://fbily.42.fr$request_uri;
-}
-
-server {
-        listen 443 ssl default_server;
-        listen [::]:443 ssl default_server;
+        listen 443 ssl;
+        listen [::]:443 ssl;
 
         server_name fbily.42.fr;
 
