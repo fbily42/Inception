@@ -6,13 +6,13 @@
 #    By: fbily <fbily@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/17 19:39:30 by fbily             #+#    #+#              #
-#    Updated: 2023/10/04 20:56:12 by fbily            ###   ########.fr        #
+#    Updated: 2023/10/05 15:02:59 by fbily            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update -y
 RUN apt install -y mariadb-server
 
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/
